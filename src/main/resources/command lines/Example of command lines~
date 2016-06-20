@@ -1,0 +1,2 @@
+java -jar inferray-benchmark-0.0.1-SNAPSHOT-jar-with-dependencies.jar -T 900 -I 1 -M 14336 -E " /home/satin/inferray/ReasonersBenchmarked/target" -O /home/satin/benchmark-runs.txt -DS all -BRES /home/satin/benchmark.csv -BERR /home/satin/benchmark-errors.log
+

@@ -1,0 +1,248 @@
+Prefices
+{
+     rdf      :  http://www.w3.org/1999/02/22-rdf-syntax-ns#
+     rdfs     :  http://www.w3.org/2000/01/rdf-schema#
+     owl      :  http://www.w3.org/2002/07/owl#
+     xsd      :  http://www.w3.org/2001/XMLSchema#
+     onto     :  http://www.ontotext.com/
+}
+
+
+Axioms
+{
+
+}
+
+Rules
+{
+// ========================================================================
+// The Semantics of Equality
+// ========================================================================
+
+
+Id: eq_sym
+	s <owl:sameAs> o                                 [Constraint s != o]
+	-------------------------------
+	o <owl:sameAs> s
+	
+Id: eq_trans
+	x <owl:sameAs> y                                 [Constraint x != y]
+	y <owl:sameAs> z                                 [Constraint y != z]
+	-------------------------------
+	x <owl:sameAs> z
+
+Id: eq_rep_s
+	x <owl:sameAs> y                                 [Constraint x != y]
+	x p o
+	-------------------------------
+	y p o
+
+Id: eq_rep_p
+	x <owl:sameAs> y                                 [Constraint x != y]
+	s x o
+	-------------------------------
+	s y o
+
+Id: eq_rep_o
+	x <owl:sameAs> y                                 [Constraint x != y]
+	s p x
+	-------------------------------
+	s p y
+
+
+// ========================================================================
+// The Semantics of Axioms about Properties 
+// ========================================================================
+
+// Id: prp-ap
+// See the axiomatic triples in the Axioms section.
+	
+Id: prp_dom
+	p <rdfs:domain> c
+	x p y
+	-------------------------------
+	x <rdf:type> c
+
+Id: prp_rng
+	p <rdfs:range> c
+	x p y
+	-------------------------------
+	y <rdf:type> c
+
+Id: prp_fp
+	p <rdf:type> <owl:FunctionalProperty>
+	x p y1                                [Constraint y1 != y2]
+	x p y2                                [Cut]
+	-------------------------------
+	y1 <owl:sameAs> y2
+	
+Id: prp_ifp
+	p <rdf:type> <owl:InverseFunctionalProperty>
+	x1 p y                                [Constraint x1 != x2]
+	x2 p y                                [Cut]
+	-------------------------------
+	x1 <owl:sameAs> x2
+
+
+Id: prp_symp
+	p <rdf:type> <owl:SymmetricProperty>
+	x p y
+	-------------------------------
+	y p x
+
+
+Id: prp_trp
+	p <rdf:type> <owl:TransitiveProperty>
+	x p y
+	y p z
+	-------------------------------
+	x p z
+
+Id: prp_spo1
+	p1 <rdfs:subPropertyOf> p2
+	x p1 y
+	-------------------------------
+	x p2 y
+
+
+Id: prp_eqp1
+	p1 <owl:equivalentProperty> p2
+	x p1 y
+	-------------------------------
+	x p2 y
+
+Id: prp_eqp2
+	p1 <owl:equivalentProperty> p2
+	x p2 y
+	-------------------------------
+	x p1 y
+
+
+Id: prp_inv1
+	p1 <owl:inverseOf> p2
+	x p1 y
+	-------------------------------
+	y p2 x
+
+Id: prp_inv2
+	p1 <owl:inverseOf> p2
+	x p2 y
+	-------------------------------
+	y p1 x
+
+
+// ========================================================================
+// The Semantics of Classes 
+// ========================================================================
+
+// Id: cls-thing
+// (See the axiomatic triples in the Axioms section)
+
+// Id: cls-nothing1
+// (See the axiomatic triples in the Axioms section)
+
+
+
+// ========================================================================
+// The Semantics of Class Axioms
+// ========================================================================
+
+Id:cax_sco
+	c1 <rdfs:subClassOf> c2                [Constraint c1 != c2 ]
+	x <rdf:type> c1
+	-------------------------------
+	x <rdf:type> c2
+
+Id: cax_eqc1
+	c1 <owl:equivalentClass> c2            [Constraint c1 != c2 ]
+	x <rdf:type> c1
+	-------------------------------
+	x <rdf:type> c2
+
+Id: cax_eqc2
+	c1 <owl:equivalentClass> c2            [Constraint c1 != c2 ]
+	x <rdf:type> c2
+	-------------------------------
+	x <rdf:type> c1
+
+
+// ========================================================================
+// The Semantics of Datatypes
+// ========================================================================
+
+// Id: dt-type1
+// (See the axiomatic triples in the Axioms section)
+
+// These are not implemented (and probably not implementable)
+//		dt-type2
+//		dt-eq
+//		dt-diff
+//		dt-not-type
+
+
+// ========================================================================
+// The Semantics of Schema Vocabulary
+// ========================================================================
+
+
+Id: scm_sco
+	c1 <rdfs:subClassOf> c2
+	c2 <rdfs:subClassOf> c3
+	-------------------------------
+	c1 <rdfs:subClassOf> c3
+
+Id: scm_eqc1
+	c1 <owl:equivalentClass> c2            [Constraint c1 != c2 ]
+	-------------------------------
+	c1 <rdfs:subClassOf> c2
+	c2 <rdfs:subClassOf> c1
+
+Id: scm_eqc2
+	c1 <rdfs:subClassOf> c2                [Constraint c1 != c2 ]
+	c2 <rdfs:subClassOf> c1                
+	-------------------------------
+	c1 <owl:equivalentClass> c2
+
+Id: scm_spo
+	p1 <rdfs:subPropertyOf> p2
+	p2 <rdfs:subPropertyOf> p3
+	-------------------------------
+	p1 <rdfs:subPropertyOf> p3
+
+Id: scm_eqp1
+	p1 <owl:equivalentProperty> p2            [Constraint p1 != p2 ]
+	-------------------------------
+	p1 <rdfs:subPropertyOf> p2
+	p2 <rdfs:subPropertyOf> p1
+
+Id: scm_eqp2
+	p1 <rdfs:subPropertyOf> p2                [Constraint p1 != p2 ]
+	p2 <rdfs:subPropertyOf> p1                
+	-------------------------------
+	p1 <owl:equivalentProperty> p2
+
+Id: scm_dom1
+	p  <rdfs:domain> c1
+	c1 <rdfs:subClassOf> c2
+	-------------------------------
+	p <rdfs:domain> c2
+
+Id: scm_dom2
+	p2 <rdfs:domain> c
+	p1 <rdfs:subPropertyOf> p2
+	-------------------------------
+	p1 <rdfs:domain> c
+
+Id: scm_rng1
+	p  <rdfs:range> c1
+	c1 <rdfs:subClassOf> c2 
+	-------------------------------
+	p <rdfs:range> c2
+
+Id: scm_rng2
+	p2 <rdfs:range> c
+	p1 <rdfs:subPropertyOf> p2
+	-------------------------------
+	p1 <rdfs:range> c
+
+}

@@ -1,0 +1,184 @@
+Prefices
+{
+     rdf      :  http://www.w3.org/1999/02/22-rdf-syntax-ns#
+     rdfs     :  http://www.w3.org/2000/01/rdf-schema#
+     xsd      :  http://www.w3.org/2001/XMLSchema#
+}
+
+Axioms
+{
+// RDF axiomatic triples (from RDF Semantics, section 3.1):
+
+     <rdf:type> <rdf:type> <rdf:Property>
+     <rdf:subject> <rdf:type> <rdf:Property>
+     <rdf:predicate> <rdf:type> <rdf:Property>
+     <rdf:object> <rdf:type> <rdf:Property>
+     <rdf:first> <rdf:type> <rdf:Property>
+     <rdf:rest> <rdf:type> <rdf:Property>
+     <rdf:value> <rdf:type> <rdf:Property>
+     <rdf:nil> <rdf:type> <rdf:List>
+
+// RDFS axiomatic triples (from RDF Semantics, section 4.1):
+
+/*[partialRDFS]*/
+     <rdf:type> <rdfs:domain> <rdfs:Resource>
+
+     <rdfs:domain> <rdfs:domain> <rdf:Property>
+     <rdfs:range> <rdfs:domain> <rdf:Property>
+     <rdfs:subPropertyOf> <rdfs:domain> <rdf:Property>
+     <rdfs:subClassOf> <rdfs:domain> <rdfs:Class>
+/*[partialRDFS]*/
+
+     <rdf:subject> <rdfs:domain> <rdf:Statement>
+     <rdf:predicate> <rdfs:domain> <rdf:Statement>
+     <rdf:object> <rdfs:domain> <rdf:Statement>
+
+/*[partialRDFS]*/
+     <rdfs:member> <rdfs:domain> <rdfs:Resource>
+     <rdf:first> <rdfs:domain> <rdf:List>
+     <rdf:rest> <rdfs:domain> <rdf:List>
+     <rdfs:seeAlso> <rdfs:domain> <rdfs:Resource>
+     <rdfs:isDefinedBy> <rdfs:domain> <rdfs:Resource>
+     <rdfs:comment> <rdfs:domain> <rdfs:Resource>
+     <rdfs:label> <rdfs:domain> <rdfs:Resource>
+     <rdf:value> <rdfs:domain> <rdfs:Resource>
+
+     <rdf:type> <rdfs:range> <rdfs:Class>
+     <rdfs:domain> <rdfs:range> <rdfs:Class>
+     <rdfs:range> <rdfs:range> <rdfs:Class>
+     <rdfs:subPropertyOf> <rdfs:range> <rdf:Property>
+     <rdfs:subClassOf> <rdfs:range> <rdfs:Class>
+
+     <rdf:subject> <rdfs:range> <rdfs:Resource>
+     <rdf:predicate> <rdfs:range> <rdfs:Resource>
+     <rdf:object> <rdfs:range> <rdfs:Resource>
+     <rdfs:member> <rdfs:range> <rdfs:Resource>
+     <rdf:first> <rdfs:range> <rdfs:Resource>
+     <rdf:rest> <rdfs:range> <rdf:List>
+
+     <rdfs:seeAlso> <rdfs:range> <rdfs:Resource>
+     <rdfs:isDefinedBy> <rdfs:range> <rdfs:Resource>
+     <rdfs:comment> <rdfs:range> <rdfs:Literal>
+     <rdfs:label> <rdfs:range> <rdfs:Literal>
+
+     <rdf:value> <rdfs:range> <rdfs:Resource>
+/*[partialRDFS]*/
+
+     <rdf:Alt> <rdfs:subClassOf> <rdfs:Container>
+     <rdf:Bag> <rdfs:subClassOf> <rdfs:Container>
+     <rdf:Seq> <rdfs:subClassOf> <rdfs:Container>
+     <rdfs:ContainerMembershipProperty> <rdfs:subClassOf> <rdf:Property>
+
+     <rdfs:isDefinedBy> <rdfs:subPropertyOf> <rdfs:seeAlso>
+
+     <rdf:XMLLiteral> <rdf:type> <rdfs:Datatype>
+     <rdf:XMLLiteral> <rdfs:subClassOf> <rdfs:Literal>
+     <rdfs:Datatype> <rdfs:subClassOf> <rdfs:Class>
+
+     <xsd:nonNegativeInteger> <rdf:type> <rdfs:Datatype>
+     <xsd:string> <rdf:type> <rdfs:Datatype>
+
+	<rdf:_1> <rdf:type> <rdf:Property>
+	<rdf:_1> <rdf:type> <rdfs:ContainerMembershipProperty>
+	<rdf:_1> <rdfs:domain> <rdfs:Resource>
+	<rdf:_1> <rdfs:range> <rdfs:Resource>
+}
+
+
+Rules
+{
+
+// ========================================================================
+// The Semantics of Axioms about Properties 
+// ========================================================================
+
+// Id: prp-ap
+// See the axiomatic triples in the Axioms section.
+	
+Id: prp_dom
+	p <rdfs:domain> c
+	x p y
+	-------------------------------
+	x <rdf:type> c
+
+Id: prp_rng
+	p <rdfs:range> c
+	x p y
+	-------------------------------
+	y <rdf:type> c
+
+
+
+Id: prp_spo1
+	p1 <rdfs:subPropertyOf> p2
+	x p1 y
+	-------------------------------
+	x p2 y
+
+
+
+// ========================================================================
+// The Semantics of Classes 
+// ========================================================================
+
+// Id: cls-thing
+// (See the axiomatic triples in the Axioms section)
+
+// Id: cls-nothing1
+// (See the axiomatic triples in the Axioms section)
+
+
+
+// ========================================================================
+// The Semantics of Class Axioms
+// ========================================================================
+
+Id:cax_sco
+	c1 <rdfs:subClassOf> c2                [Constraint c1 != c2 ]
+	x <rdf:type> c1
+	-------------------------------
+	x <rdf:type> c2
+
+// ========================================================================
+// The Semantics of Datatypes
+// ========================================================================
+
+// Id: dt-type1
+// (See the axiomatic triples in the Axioms section)
+
+// These are not implemented (and probably not implementable)
+//		dt-type2
+//		dt-eq
+//		dt-diff
+//		dt-not-type
+
+
+// ========================================================================
+// The Semantics of Schema Vocabulary
+// ========================================================================
+
+Id: scm_dom2
+	p2 <rdfs:domain> c
+	p1 <rdfs:subPropertyOf> p2
+	-------------------------------
+	p1 <rdfs:domain> c
+
+Id: scm_rng2
+	p2 <rdfs:range> c
+	p1 <rdfs:subPropertyOf> p2
+	-------------------------------
+	p1 <rdfs:range> c
+	
+Id: scm_sco
+  c1 <rdfs:subClassOf> c2
+  c2 <rdfs:subClassOf> c3
+  -------------------------------
+  c1 <rdfs:subClassOf> c3
+  
+Id: scm_spo
+  p1 <rdfs:subPropertyOf> p2
+  p2 <rdfs:subPropertyOf> p3
+  -------------------------------
+  p1 <rdfs:subPropertyOf> p3
+	
+}
