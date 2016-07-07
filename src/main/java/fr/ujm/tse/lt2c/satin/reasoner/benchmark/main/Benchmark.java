@@ -165,7 +165,8 @@ public class Benchmark {
 		 * new ArrayList<LogicalFragmentBenchmarked>()); }
 		 * benchmarkTable.get(db, res).add(frag); } } } } }
 		 */
-		rdfoxForSlider(benchmarkTable);
+		sliderYago(benchmarkTable);
+		//rdfoxForSlider(benchmarkTable);
 //		rdfoxLubm(benchmarkTable);
 		// lubmOnly(benchmarkTable);
 		// owlimAndSliderAll(benchmarkTable);
@@ -224,6 +225,25 @@ public class Benchmark {
 			}
 		}
 	}
+
+	private void sliderYago(
+		Table<DatasetsBenchmarked, ReasonerBenchmarked, List<LogicalFragmentBenchmarked>> benchmarkTable2) {
+		this.datasetUnderTest.add(DatasetsBenchmarked.YAGO);
+		List<LogicalFragmentBenchmarked> fragments = new ArrayList<>(1);
+		fragments.add(LogicalFragmentBenchmarked.RHODF);
+
+		for (DatasetsBenchmarked ds : this.datasetUnderTest) {
+			List<ReasonerBenchmarked> allReasoners = new ArrayList<>(2);
+			 allReasoners.add(ReasonerBenchmarked.STREAM);
+			for (ReasonerBenchmarked reasoner : allReasoners) {
+				benchmarkTable.put(ds, reasoner, new ArrayList<LogicalFragmentBenchmarked>());
+				for (LogicalFragmentBenchmarked frag : fragments) {
+					benchmarkTable.get(ds, reasoner).add(frag);
+				}
+			}
+		}
+	}
+
 
 	private void rdfoxBsbm(
 			Table<DatasetsBenchmarked, ReasonerBenchmarked, List<LogicalFragmentBenchmarked>> benchmarkTable2) {

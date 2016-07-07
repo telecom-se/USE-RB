@@ -61,7 +61,7 @@ public class BenchmarkRunnerUtils {
 //        String scriptCode = "cd " + runConfig.getExecutableDirectory() + " && java -Xmx" + runConfig.getMemory()
 //                + "m -cp .:./libs/* fr.ujm.tse.lt2c.satin.Benchmark ";
         
-        String scriptCode = "cd " + runConfig.getExecutableDirectory() + " && java -Xms22G -Xmx22G "
+        String scriptCode = "cd " + runConfig.getExecutableDirectory() + " && java -Xms1G -Xmx1G "
         + " -cp .:./libs/* fr.ujm.tse.lt2c.satin.Benchmark ";
 
         scriptCode += " -D '" + runConfig.getDataset() + "' ";
