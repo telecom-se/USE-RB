@@ -16,11 +16,13 @@ USE-RB aims at evaluating how a reasoner is working in harmony with the CPU and 
 USE-RB not only monitor how a reasoner temporally perform (in number of cpu cycles for running a benchmark), it also encompass various hardware metrics in order to evaluate how the reasoner works with the hardware. 
 
 These metrics falls into three categories :
-1. **Instructions metrics ** : Instructions metrics includes the number of branch mispredictions (branch misses), total number of instructions, the
+
+1. **Instructions metrics** : Instructions metrics includes the number of branch mispredictions (branch misses), total number of instructions, the
 number of instructions per CPU cycle, and the number of stalled CPU cycle
 per instruction.
+
 2. **Memory metrics** includes the number of page faults, the number of
-transactional lookaside buer loads and misses (total number and hit ratio), the number of stall CPU cycles when accessing any hierarchy of the memory.
+transactional lookaside buffer loads and misses (total number and hit ratio), the number of stall CPU cycles when accessing any hierarchy of the memory.
 3. **Cache metrics** include the miss rate on all levels of cache, per cache hierarchy level information on cache hit and misses, data and instruction L1 caches hit/miss ratios.
 
 All these metrics are serialized in a result file, whose path is given as argument `BRES` (see [how to launch USE-RB](#launch)).
