@@ -2,7 +2,7 @@
 
 
 <h1 align="center">
-	<img width="30%" src="https://github.com/telecom-se/USE-RB/blob/master/userb.png" alt="USE-RB">
+	<img width="30%" src="https://github.com/telecom-se/USE-RB/blob/master/img/userb.png" alt="USE-RB">
 </h1>
 
 
@@ -27,7 +27,7 @@ All these metrics are serialized in a result file, whose path is given as argume
 
 Here is an example on what can be drawn with the result file :
 <h1 align="center">
-	<img src="https://github.com/telecom-se/USE-RB/blob/master/example-figure.png" alt="example" />
+	<img src="https://github.com/telecom-se/USE-RB/blob/master/img/example-figure.png" alt="example" />
 </h1>
 
 ## Table of Contents
