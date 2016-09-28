@@ -186,7 +186,8 @@ This work is free. You can redistribute it and/or modify it under the terms of t
 *Christophe Gravier, Julien Subercaze. USE-RB : Benchmarking how reasoners work in harmony with modern hardware. ISWC, Kobe, Japan. 17--21, Cot. 2016, pp. to be defined (poster)*
 <hr />
 
-* Oone can get some side information from our VLDB 2016 paper on our reasoner [Inferray](https://github.com/jsubercaze/inferray) which contains to information on datasets, vanilla reasoners, and additional comments on how a reasoner work in harmony with the hardware : 
+One can get some side information from our VLDB 2016 paper on our reasoner [Inferray](https://github.com/jsubercaze/inferray) which contains to information on datasets, vanilla reasoners, and additional comments on how a reasoner work in harmony with the hardware : 
+
 <hr />
 *Julien Subercaze, Christophe Gravier, Jules Chevalier, Frederique Laforest. Inferray: fast in-memory RDF inference. PVLDB, Sep 2016, New Delhi, India. 9, 2016, PVLDB, pp. 468--480*
 <hr />
